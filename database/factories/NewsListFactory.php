@@ -18,9 +18,11 @@ $factory->define(App\NewsList::class, function (Faker $faker) {
         'id_user'   =>  function () {
             return factory(App\User::class)->create()->id;
         },
-        'title' => $faker->text(80),
+        'title' => $faker->sentence(5),
         'description' => $faker->text(),
         'views' => $faker->numberBetween(1, 9999),
-        'slug' => str_slug($faker->text(80))
+        'slug' => function (array $title) {
+            return str_slug($title['title']);
+        }
     ];
 });
