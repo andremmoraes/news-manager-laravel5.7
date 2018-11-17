@@ -15,7 +15,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\NewsList::class, function (Faker $faker) {
     return [
-        'id_user'   =>  function () {
+        'id_user'   =>  function (){
             return factory(App\User::class)->create()->id;
         },
         'title' => $faker->sentence(5),
