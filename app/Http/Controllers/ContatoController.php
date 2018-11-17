@@ -15,7 +15,8 @@ class ContatoController extends Controller
         return view('layouts.contato');
     }
 
-    public function mail(ContatoRequest $request){
+    public function mail(ContatoRequest $request)
+    {
         Mail::to(config('app.email'))->send(new ContatoMail($request));
         $request->session()->flash('success', 'E-mail enviado com sucesso!');
 

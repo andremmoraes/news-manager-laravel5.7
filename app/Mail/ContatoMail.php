@@ -33,6 +33,7 @@ class ContatoMail extends Mailable
     {
         return $this->from(config('app.email'))->replyTo($this->contact['email'])
             ->subject("Contato ".$this->contact['name']." - ".config('app.name'))
-            ->view('app.emails.emails');;
+            ->view('app.emails.emails');
+        ;
     }
 }

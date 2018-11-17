@@ -17,7 +17,7 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            if(\Auth::user()->admin != 0){
+            if (\Auth::user()->admin != 0) {
                 return redirect()->route('admin.painel.index');
             }
 
@@ -76,7 +76,7 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
 
-        if($user->id != \Auth::id() && \Auth::user()->admin != $user->admin){
+        if ($user->id != \Auth::id() && \Auth::user()->admin != $user->admin) {
             return view('auth.admin.users.edit_user', compact('user'));
         }
         
@@ -94,12 +94,12 @@ class UsersController extends Controller
     {
         $authUser = User::findOrFail($id);
 
-        if($request->input('password') == '') {
+        if ($request->input('password') == '') {
             $validator = Validator::make($request->all(), [
                 'name'  =>  'required|max:100|min:3',
                 'admin' =>  'required'
             ]);
-        } elseif(\Auth::user()->password != $request->input('password')) {
+        } elseif (\Auth::user()->password != $request->input('password')) {
             $validator = Validator::make($request->all(), [
                 'name'  =>  'required|max:100|min:3',
                 'password'  =>  'required|min:3',
@@ -115,7 +115,7 @@ class UsersController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        if($authUser->id != \Auth::id() && \Auth::user()->admin != $authUser->admin){
+        if ($authUser->id != \Auth::id() && \Auth::user()->admin != $authUser->admin) {
             $authUser->name = $request->input('name');
             $authUser->admin = $request->input('admin');
 
@@ -140,7 +140,7 @@ class UsersController extends Controller
     public function destroy($id, Request $request)
     {
         $user = User::findOrFail($id);
-        if($user->id != \Auth::id() && \Auth::user()->admin == 0 && $user->admin == 1){
+        if ($user->id != \Auth::id() && \Auth::user()->admin == 0 && $user->admin == 1) {
             if ($user->delete()) {
                 $request->session()->flash('success', 'Usuário deletado com sucesso!');
             } else {

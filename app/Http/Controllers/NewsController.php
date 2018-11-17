@@ -20,7 +20,7 @@ class NewsController extends Controller
         $news = NewsList::OrderBy('created_at', 'DESC')->simplePaginate(10);
         $user = User::get();
 
-        return view('auth.admin.news.list_news', compact('news','user'));
+        return view('auth.admin.news.list_news', compact('news', 'user'));
     }
 
     /**
@@ -65,7 +65,7 @@ class NewsController extends Controller
     {
         $news = NewsList::findOrFail($id);
 
-        if($news->id_user == \Auth::id() OR \Auth::user()->admin == 0){
+        if ($news->id_user == \Auth::id() or \Auth::user()->admin == 0) {
             return view('auth.admin.news.edit_news', compact('news'));
         }
         
@@ -82,7 +82,7 @@ class NewsController extends Controller
     public function update(Request $request, $id)
     {
         $news = NewsList::find($id);
-        if($request->input('title') == '') {
+        if ($request->input('title') == '') {
             $validator = Validator::make($request->all(), [
                 'title'  =>  'required|max:100|min:3',
                 'description'   =>  'required|min:12'
@@ -102,7 +102,7 @@ class NewsController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        if($news->id_user == \Auth::id() OR \Auth::user()->admin == 0){
+        if ($news->id_user == \Auth::id() or \Auth::user()->admin == 0) {
             if ($news->save()) {
                 $request->session()->flash('success', 'Notícia atualizada com sucesso!');
             } else {
@@ -123,7 +123,7 @@ class NewsController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        if(\Auth::user()->admin == 0){
+        if (\Auth::user()->admin == 0) {
             $news = NewsList::findOrFail($id);
 
             if ($news->delete()) {

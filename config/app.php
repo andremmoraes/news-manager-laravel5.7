@@ -118,7 +118,7 @@ return [
     /**
      /
      / Esconder algumas informações na hora do ERROR
-     / 
+     /
      */
     'debug_blacklist' => [
         '_ENV' => [

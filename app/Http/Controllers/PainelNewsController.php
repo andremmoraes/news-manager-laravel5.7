@@ -7,7 +7,6 @@ use Validator;
 
 class PainelNewsController extends Controller
 {
-
     public function index()
     {
         return view('auth.admin.painel');
@@ -25,7 +24,7 @@ class PainelNewsController extends Controller
     {
         $authUser = \App\User::findOrFail($id);
 
-        if($authUser->email == 'admin@admin.com') {
+        if ($authUser->email == 'admin@admin.com') {
             $validator = Validator::make($request->all(), [
                 'name'  =>  'required|max:100|min:3',
                 'email' => 'required|email|unique:users'
@@ -33,7 +32,7 @@ class PainelNewsController extends Controller
 
             $authUser->name = $request->input('name');
             $authUser->email = $request->input('email');
-        } elseif($request->input('password') != "") {
+        } elseif ($request->input('password') != "") {
             $validator = Validator::make($request->all(), [
                 'name'  =>  'required|max:100|min:3',
                 'password' => 'min:3'

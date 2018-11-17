@@ -21,7 +21,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard.index');
 
         /**
-         / Gerenciar Usuários 
+         / Gerenciar Usuários
         */
 
         // Lista de usuários
@@ -61,7 +61,7 @@ Auth::routes();
 // Sistema de Visualizações
 Route::group(['middleware' => ['web']], function () {
     return App\Http\Controllers\VisitsDashboardController::views();
-});  
+});
 
 // Home da Listagem das noticias
 Route::get('/', 'ListaNewsController@index')->name('app.list');
