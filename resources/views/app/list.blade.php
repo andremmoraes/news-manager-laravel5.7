@@ -13,10 +13,10 @@
 
                         @if($image == 1)
                             @php
-                                $removeTags = preg_replace('/(width|height)="(.+)"/i', '', $img[0]); // Remove as tags Width e Height da tag image
-                            @endphp
+                                $setImage = preg_replace('/(width|height)="(.+)"/i', '', $img[0]); // Remove as tags Width e Height da tag image
 
-                            {!! $removeTags !!}
+                                echo $setImage; // Mostra a imagem
+                            @endphp
                         @endif
                     </div>
 
@@ -28,7 +28,7 @@
                 </a>
             </div>
         @empty
-            {{ 'Não há notícias' }}
+            Não há notícias
         @endforelse
     </div>
     

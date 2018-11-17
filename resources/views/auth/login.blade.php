@@ -45,30 +45,25 @@
                         <div class="mb-3"><img src="{{ asset('images/logo.png') }}" alt="logo" /></div>
                     </div>
 
-                    @if($errors->any())
-                        @component('components.alert-danger')
-                            @foreach ($errors->all() as $error)
-                                {{ $error }}<br>
-                            @endforeach
-                        @endcomponent
-                    @endif
+                    <!-- Mostrar erros de validações -->
+                    @include('components.messages.errors_validations')
 
                     <!-- Form -->
                     <form class="form-horizontal m-t-20" method="post" action="{{ route('login') }}">
-                        {{ csrf_field() }}
+                        @csrf
                         <div class="row">
                             <div class="col-12">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
                                     </div>
-                                    <input type="text" class="form-control form-control-lg" placeholder="{{ __('E-mail') }}" name="email" aria-label="Username" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control form-control-lg" placeholder="E-mail" name="email" aria-label="Username" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
                                     </div>
-                                    <input type="password" class="form-control form-control-lg" placeholder="{{ __('Senha') }}" name="password" aria-label="Password" aria-describedby="basic-addon1">
+                                    <input type="password" class="form-control form-control-lg" placeholder="Senha" name="password" aria-label="Password" aria-describedby="basic-addon1">
                                 </div>
                             </div>
                         </div>
@@ -84,21 +79,6 @@
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- Login box.scss -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper scss in scafholding.scss -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper scss in scafholding.scss -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Right Sidebar -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Right Sidebar -->
-        <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
     <!-- All Required js -->

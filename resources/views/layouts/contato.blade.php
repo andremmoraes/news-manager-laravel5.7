@@ -5,7 +5,7 @@
         <div class="auth-box text-dark">
             <div id="loginform">
                 <div class="text-center p-t-20 p-b-20">
-                    <h4 class="db">{{ __('Formulário de Contato') }}</h4>
+                    <h4 class="db">Formulário de Contato</h4>
                 </div>
     
                 <!-- Form -->
@@ -14,35 +14,21 @@
                     <div class="row p-b-30">
                         <div class="col-12">
 
-                            <!-- Mostrar erros de validação -->
-                            @if ($errors->any())
-                                @component('components.alert-danger')
-                                        @foreach ($errors->all() as $error)
-                                            {{ $error }}<br>
-                                        @endforeach
-                                @endcomponent
-                            @endif
-    
+                            <!-- Mostrar erros de validações -->
+                            @include('components.messages.errors_validations')
+
                             <!-- Mostrar Mensagem de sucessos -->
-                            @if(session('success'))
-                                @component('components.alert-success')
-                                    {{ session('success') }}
-                                @endcomponent
-                            @endif
+                            @include('components.messages.success_validation')
 
                             <!-- Mostrar erros -->
-                            @if(session('error'))
-                                @component('components.alert-danger')
-                                    {{ session('error') }}
-                                @endcomponent
-                            @endif
+                            @include('components.messages.failed_validation')
     
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="{{ __('Nome') }}" name="name" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" placeholder="Nome" name="name" aria-describedby="basic-addon1">
                             </div>
 
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="{{ __('E-mail') }}" name="email" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" placeholder="E-mail" name="email" aria-describedby="basic-addon1">
                             </div>
 
                             <div class="input-group mb-3">
@@ -55,7 +41,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <div class="p-t-20">
-                                    <button class="btn btn-primary float-right" type="submit">{{ __('Enviar') }}</button>
+                                    <button class="btn btn-primary float-right" type="submit">Enviar</button>
                                 </div>
                             </div>
                         </div>

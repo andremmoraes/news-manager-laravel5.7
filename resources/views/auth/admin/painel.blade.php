@@ -90,10 +90,10 @@
                                 <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-lg mr-5 ml-5 mt-3"></i></a>
                                 <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{{ route('editar.perfil') }}"><i class="ti-settings mr-2 ml-2"></i> {{ __('Configurações da conta') }}</a>
+                                    <a class="dropdown-item" href="{{ route('editar.perfil') }}"><i class="ti-settings mr-2 ml-2"></i> Configurações da conta</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();"><i class="fa fa-power-off mr-2 ml-2"></i> {{ __('Sair') }}</a>
+                                    document.getElementById('logout-form').submit();"><i class="fa fa-power-off mr-2 ml-2"></i> Sair</a>
                                     <div class="dropdown-divider"></div>
                                 </div>
                             </li>
@@ -116,32 +116,32 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <hr class="bg-dark">
-                        <li class="sidebar-item"> <a href="{{ route('admin.dashboard.index') }}" class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i> <span class="hide-menu">{{ __('Dashboard') }}</span></a></li>
+                        <li class="sidebar-item"> <a href="{{ route('admin.dashboard.index') }}" class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i> <span class="hide-menu">Dashboard</span></a></li>
 
-                        <li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark sidebar-link" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-cogs"></i> <span class="hide-menu">{{ __('Notícias') }}</span></a>
+                        <li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark sidebar-link" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-cogs"></i> <span class="hide-menu">Notícias</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item"><a href="{{ route('admin.news.list') }}" class="sidebar-link"><i class="fas fa-list-ul"></i> <span class="hide-menu"> {{ __('Todas notícias') }}</span></a></li>
-                                <li class="sidebar-item"><a href="{{ route('admin.news.create') }}" class="sidebar-link"><i class="fas fa-plus-square"></i> <span class="hide-menu"> {{ __('Adicionar notícia') }}</span></a></li>
+                                <li class="sidebar-item"><a href="{{ route('admin.news.list') }}" class="sidebar-link"><i class="fas fa-list-ul"></i> <span class="hide-menu">Todas notícias</span></a></li>
+                                <li class="sidebar-item"><a href="{{ route('admin.news.create') }}" class="sidebar-link"><i class="fas fa-plus-square"></i> <span class="hide-menu">Adicionar notícia</span></a></li>
                             </ul>
                         </li>
 
                         @if(Auth::user()->admin == 0)
-                            <li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark sidebar-link" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i> <span class="hide-menu">{{ __('Usuários') }}</span></a>
+                            <li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark sidebar-link" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i> <span class="hide-menu">Usuários</span></a>
                                 <ul aria-expanded="false" class="collapse first-level">
-                                    <li class="sidebar-item"><a href="{{ route('admin.user.index') }}" class="sidebar-link"><i class="fas fa-list-ul"></i> <span class="hide-menu"> {{ __('Todos usuários') }}</span></a></li>
-                                    <li class="sidebar-item"><a href="{{ route('admin.user.create') }}" class="sidebar-link"><i class="fas fa-plus-square"></i> <span class="hide-menu"> {{ __('Adicionar usuário') }}</span></a></li>
+                                    <li class="sidebar-item"><a href="{{ route('admin.user.index') }}" class="sidebar-link"><i class="fas fa-list-ul"></i> <span class="hide-menu">Todos usuários</span></a></li>
+                                    <li class="sidebar-item"><a href="{{ route('admin.user.create') }}" class="sidebar-link"><i class="fas fa-plus-square"></i> <span class="hide-menu">Adicionar usuário</span></a></li>
                                 </ul>
                             </li>
                         @endif
 
                         <li class="sidebar-item"> <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();" class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><i class="fas fa-sign-out-alt"></i> <span class="hide-menu">{{ __('Sair') }}</span></a></li>
+                        document.getElementById('logout-form').submit();" class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><i class="fas fa-sign-out-alt"></i> <span class="hide-menu">Sair</span></a></li>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
 
-                        <li class="sidebar-item bg-secondary"> <a href="{{ route('app.list') }}" class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><span class="hide-menu ml-5">{{ __('Voltar para o site') }}</span></a></li>
+                        <li class="sidebar-item bg-secondary"> <a href="{{ route('app.list') }}" class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><span class="hide-menu ml-5">Voltar para o site</span></a></li>
                     </ul>
                 </nav>
             </div>
@@ -150,27 +150,13 @@
         <div class="page-wrapper">
             <div class="container-fluid">
                 <!-- Mostrar erros de validações -->
-                @if($errors->any())
-                    @component('components.alert-danger')
-                        @foreach ($errors->all() as $error)
-                            {{ $error }}<br>
-                        @endforeach
-                    @endcomponent
-                @endif
+                @include('components.messages.errors_validations')
 
                 <!-- Mostrar Mensagem de sucessos -->
-                @if(session('success'))
-                    @component('components.alert-success')
-                        {{ session('success') }}
-                    @endcomponent
-                @endif
+                @include('components.messages.success_validation')
 
                 <!-- Mostrar erros -->
-                @if(session('error'))
-                    @component('components.alert-danger')
-                        {{ session('error') }}
-                    @endcomponent
-                @endif
+                @include('components.messages.failed_validation')
 
                 @yield('panel-admin')
 

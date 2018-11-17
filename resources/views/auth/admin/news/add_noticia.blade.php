@@ -5,7 +5,7 @@
     <div class="col-lg-12">
         <div class="card">
             <form method="post" action="{{ route('admin.news.store') }}" class="form-horizontal" id="add_news">
-                {{ csrf_field() }}
+                @csrf
                 <div class="card-body">
                     <h4 class="card-title">Adicionar notícia</h4>
                     <div class="form-group row">

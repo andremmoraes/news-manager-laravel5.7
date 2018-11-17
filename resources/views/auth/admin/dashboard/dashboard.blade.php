@@ -9,12 +9,12 @@
             <div class="card card-hover">
                 <div class="box bg-success text-center">
                     <h1 class="font-light text-white"><i class="fa fa-globe"></i></h1>
-                    <h6 class="text-white">{{ __('Visitantes Únicos') }}</h6>
+                    <h6 class="text-white">Visitantes Únicos</h6>
                     <h4 class="text-white">
                         @if (isset($countViewsUniq->views)) 
                             {{ number_format($countViewsUniq->views, 0, '', '.') }}
                         @else 
-                            {{ '0' }} 
+                            0
                         @endif
                     </h4>
                 </div>
@@ -24,12 +24,12 @@
                 <div class="card card-hover">
                     <div class="box bg-info text-center">
                         <h1 class="font-light text-white"><i class="fas fa-chart-line"></i></h1>
-                        <h6 class="text-white">{{ __('Visitas') }}</h6>
+                        <h6 class="text-white">Visitas</h6>
                         <h4 class="text-white">
                             @if (isset($countViews->views)) 
                                 {{ number_format($countViews->views, 0, '', '.') }} 
                             @else 
-                                {{ '0' }} 
+                                0
                             @endif
                         </h4>
                     </div>
@@ -39,7 +39,7 @@
             <div class="card card-hover">
                 <div class="box bg-warning text-center">
                     <h1 class="font-light text-white"><i class="fa fa-user"></i></h1>
-                    <h6 class="text-white">{{ __('Visualizações de Notícias') }}</h6>
+                    <h6 class="text-white">Visualizações de Notícias</h6>
                     <h4 class="text-white">{{ number_format($viewsNews, 0, '', '.') }}</h4>
                 </div>
             </div>
@@ -48,7 +48,7 @@
             <div class="card card-hover">
                 <div class="box bg-danger text-center">
                     <h1 class="font-light text-white"><i class="far fa-newspaper"></i></h1>
-                    <h6 class="text-white">{{ __('Total de Notícias') }}</h6>
+                    <h6 class="text-white">Total de Notícias</h6>
                     <h4 class="text-white">{{ number_format($totalNews, 0, '', '.') }}</h4>
                 </div>
             </div>
@@ -58,7 +58,7 @@
     <!-- Últimas postagens -->
     <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-0">{{ __('Últimas postagens') }}</h4>
+                    <h4 class="card-title mb-0">Últimas postagens</h4>
                 </div>
                 <ul class="list-style-none">
                     @forelse ($listNews as $list)

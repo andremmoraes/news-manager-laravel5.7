@@ -5,7 +5,7 @@
     <div class="col-md-6">
         <div class="card">
             <form method="post" action="{{ route('admin.user.store') }}" class="form-horizontal">
-                {{ csrf_field() }}
+                @csrf
                 <div class="card-body">
                     <h4 class="card-title">Adicionar Usuário</h4>
                     <div class="form-group row">

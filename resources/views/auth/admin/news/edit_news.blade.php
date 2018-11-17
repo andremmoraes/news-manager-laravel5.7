@@ -5,8 +5,8 @@
     <div class="col-md-6">
         <div class="card">
         <form method="post" action="{{ route('admin.news.update', $news->id) }}" class="form-horizontal" id="add_news">
-            {{ csrf_field() }}
-            {{ method_field('PUT') }}
+            @csrf
+            @method('PUT')
             <div class="card-body">
                 <h4 class="card-title">Editar notícia (ID: {{ $news->id }})</h4>
                 <div class="form-group row">

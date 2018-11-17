@@ -4,7 +4,7 @@
 <div class="col-12">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title m-b-0">{{ __('Lista de Notícias') }}</h5>
+            <h5 class="card-title m-b-0">Lista de Notícias</h5>
         </div>
         <table class="table">
             <thead>
@@ -33,15 +33,15 @@
                         </td>
                         <td>
                             @if(\Auth::user()->admin == 0 OR \Auth::user()->id == $new->id_user)
-                                <a href="{{ route('admin.news.edit', $new->id) }}" class="btn btn-info">{{ __('Editar') }}</a>
+                                <a href="{{ route('admin.news.edit', $new->id) }}" class="btn btn-info">Editar</a>
                             @endif
 
                             @if(\Auth::user()->admin == 0)
                                 <form style="display:inline;" action="{{ route('admin.news.delete', $new->id) }}" method="post">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
+                                    @csrf
+                                    @method('DELETE')
                                     <button class="btn btn-danger" type="submit"
-                                    onclick="return confirm('Tem certeza que deseja remover a notícia?')">{{ __('Deletar') }}</button>
+                                    onclick="return confirm('Tem certeza que deseja remover a notícia?')">Deletar</button>
                                 </form>
                             @endif
                         </td>

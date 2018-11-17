@@ -5,20 +5,20 @@
     <div class="col-md-6">
         <div class="card">
             <form method="post" action="{{ route('admin.user.update', $user->id) }}" class="form-horizontal">
-                {{ csrf_field() }}
-                {{ method_field('PUT') }}
+                @csrf
+                @method('PUT')
                 <div class="card-body">
                     <h4 class="card-title">Editar usuário</h4>
                     <div class="form-group row">
                         <label class="col-sm-3 text-right control-label col-form-label">Nome</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="name" placeholder="Nome" value="{{ old('name', @$user->name) }}">
+                            <input type="text" class="form-control" name="name" placeholder="Nome" value="{{ old('name', $user->name) }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 text-right control-label col-form-label">E-mail</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="email" placeholder="E-mail" value="{{ old('email', @$user->email) }}" disabled>
+                            <input type="text" class="form-control" name="email" placeholder="E-mail" value="{{ old('email', $user->email) }}" disabled>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -31,11 +31,11 @@
                         <label class="col-sm-3 text-right control-label col-form-label">Cargo</label>
                         <div class="col-md-9">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" id="customControlValidation1" name="admin" value="0" @if($user->admin == 0) {!! 'checked="checked"' !!} @endif>
+                                <input type="radio" class="custom-control-input" id="customControlValidation1" name="admin" value="0" @if($user->admin == 0) checked="checked" @endif>
                                 <label class="custom-control-label" for="customControlValidation1">Administrador</label>
                             </div>
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" id="customControlValidation2" name="admin" value="1" @if($user->admin == 1) {!! 'checked="checked"' !!} @endif>
+                                <input type="radio" class="custom-control-input" id="customControlValidation2" name="admin" value="1" @if($user->admin == 1) checked="checked" @endif>
                                 <label class="custom-control-label" for="customControlValidation2">Editor</label>
                             </div>
                         </div>

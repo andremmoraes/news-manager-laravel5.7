@@ -48,11 +48,11 @@
                         <ul class="navbar-nav mr-auto">
                             @auth
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/') }}"><i class="fas fa-home"></i> {{ __('Home') }}</a>
+                                    <a class="nav-link" href="{{ url('/') }}"><i class="fas fa-home"></i> Home</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('contato.index') }}"><i class="far fa-envelope"></i> {{ __('Contato') }}</a>
+                                    <a class="nav-link" href="{{ route('contato.index') }}"><i class="far fa-envelope"></i> Contato</a>
                                 </li>
                             @endauth
                         </ul>
@@ -63,25 +63,25 @@
                             <!-- Authentication Links -->
                             @guest
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/') }}"><i class="fas fa-home"></i> {{ __('Home') }}</a>
+                                    <a class="nav-link" href="{{ url('/') }}"><i class="fas fa-home"></i> Home</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('contato.index') }}"><i class="far fa-envelope"></i> {{ __('Contato') }}</a>
+                                    <a class="nav-link" href="{{ route('contato.index') }}"><i class="far fa-envelope"></i> Contato</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-user"></i> {{ __('Entrar') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-user"></i> Entrar</a>
                                 </li>
                             @else
                                 <li class="nav-item bg-warning mr-2">
-                                    <a href="{{ route('admin.painel.index') }}" class="nav-link"><i class="fas fa-cogs"></i> {{ __('Admin') }}</a>
+                                    <a href="{{ route('admin.painel.index') }}" class="nav-link"><i class="fas fa-cogs"></i> Admin</a>
                                 </li>
 
                                 <li class="nav-item">
                                     <a href="{{ route('logout') }}" class="nav-link bg-danger" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
-                                        <i class="fas fa-sign-out-alt"></i> {{ __('Sair') }}
+                                        <i class="fas fa-sign-out-alt"></i> Sair
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

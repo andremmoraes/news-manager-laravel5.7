@@ -4,7 +4,7 @@
     <div class="row">
         <div class="card col-lg-12">
             <div class="card-body">
-                <h4 class="card-title mb-0">{{ __('Procurando por "'.\Request::input('news_search').'"') }}</h4>
+                <h4 class="card-title mb-0">Procurando por "{{ \Request::input('news_search') }}"</h4>
             </div>
             <ul class="list-style-none mx-0">
                 @forelse ($search as $value)
@@ -27,7 +27,7 @@
                 </div>
                 @empty
                     <div class="alert alert-danger mr-2">
-                        {{ 'Sem resultado...' }}
+                        Sem resultado...
                     </div>
                 @endforelse
             </ul>
