@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsersRequest;
-use Validator;
+use App\Http\Requests\UsersUpdateRequest;
 use App\User;
 
 class UsersController extends Controller
@@ -75,42 +75,26 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UsersUpdateRequest $request, $id)
     {
         $authUser = User::findOrFail($id);
 
-        if ($request->input('password') == '') {
-            $validator = Validator::make($request->all(), [
-                'name'  =>  'required|max:100|min:3',
-                'admin' =>  'required'
-            ]);
-        } elseif (\Auth::user()->password != $request->input('password')) {
-            $validator = Validator::make($request->all(), [
-                'name'  =>  'required|max:100|min:3',
-                'password'  =>  'required|min:3',
-                'admin' =>  'required'
-            ]);
-
-            $authUser->password = Hash::make($request->input('password'));
-        } else {
-            return redirect()->route('admin.user.index');
-        }
-
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        }
-
         if ($authUser->id != \Auth::id() && \Auth::user()->admin != $authUser->admin) {
             $authUser->name = $request->input('name');
-            $authUser->admin = $request->input('admin');
+
+            if ($request->input('password') != ""):
+                $authUser->password = \Hash::make($request->input('password'));
+            endif;
+
+            if ($authUser->admin != $request->input('admin')):
+                $authUser->admin = $request->input('admin');
+            endif;
 
             if ($authUser->save()) {
                 $request->session()->flash('success', 'Usuário atualizado com sucesso!');
             } else {
                 $request->session()->flash('error', 'Erro ao atualizar usuário');
             }
-        } else {
-            $request->session()->flash('error', 'Erro ao atualizar usuário');
         }
 
         return redirect()->route('admin.user.index');

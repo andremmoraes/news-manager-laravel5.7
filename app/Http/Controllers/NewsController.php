@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\NewsRequest;
-use Validator;
+use App\Http\Requests\NewsUpdateRequest;
 use App\NewsList;
 use App\User;
 
@@ -65,7 +65,7 @@ class NewsController extends Controller
     {
         $news = NewsList::findOrFail($id);
 
-        if ($news->id_user == \Auth::id() or \Auth::user()->admin == 0) {
+        if ($news->id_user == \Auth::id() OR \Auth::user()->admin == 0) {
             return view('auth.admin.news.edit_news', compact('news'));
         }
         
@@ -79,37 +79,20 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NewsUpdateRequest $request, $id)
     {
         $news = NewsList::find($id);
-        if ($request->input('title') == '') {
-            $validator = Validator::make($request->all(), [
-                'title'  =>  'required|max:100|min:3',
-                'description'   =>  'required|min:12'
-            ]);
-        } else {
-            $validator = Validator::make($request->all(), [
-                'title'  =>  'min:3',
-                'description'   =>  'min:12'
-            ]);
 
-            $news->title = $request->input('title');
-            $news->description = $request->input('description');
-            $news->updated_at = date('Y-m-d H:i:s');
-        }
+        $news->title = $request->input('title');
+        $news->description = $request->input('description');
+        $news->updated_at = date('Y-m-d H:i:s');
 
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        }
-
-        if ($news->id_user == \Auth::id() or \Auth::user()->admin == 0) {
+        if ($news->id_user == \Auth::id() OR \Auth::user()->admin == 0) {
             if ($news->save()) {
                 $request->session()->flash('success', 'Notícia atualizada com sucesso!');
             } else {
                 $request->session()->flash('error', 'Erro ao atualizar notícia');
             }
-        } else {
-            $request->session()->flash('error', 'Erro ao atualizar notícia');
         }
 
         return redirect()->route('admin.news.list');
