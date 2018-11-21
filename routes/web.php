@@ -25,17 +25,17 @@ Route::group(['middleware' => ['auth']], function () {
         */
 
         // Lista de usuários
-        Route::get('/users/list', 'UsersController@index')->name('admin.user.index');
+        Route::get('/users/list', 'UsersController@index')->name('admin.user.index')->middleware('permission.admin');
         // Adicionar Usuário
-        Route::get('/add/user', 'UsersController@create')->name('admin.user.create');
+        Route::get('/add/user', 'UsersController@create')->name('admin.user.create')->middleware('permission.admin');
         // Inserir no Banco de Dados o Usuário
-        Route::post('/user/success', 'UsersController@store')->name('admin.user.store');
+        Route::post('/user/success', 'UsersController@store')->name('admin.user.store')->middleware('permission.admin');
         // Form Edit usuário
-        Route::get('/user/edit/{id}', 'UsersController@edit')->name('admin.user.edit');
+        Route::get('/user/edit/{id}', 'UsersController@edit')->name('admin.user.edit')->middleware('permission.admin');
         // Update Edit usuário
-        Route::put('/user/update/{id}', 'UsersController@update')->name('admin.user.update');
+        Route::put('/user/update/{id}', 'UsersController@update')->name('admin.user.update')->middleware('permission.admin');
         // Deletar Usuário
-        Route::delete('/user/delete/{id}', 'UsersController@destroy')->name('admin.user.delete');
+        Route::delete('/user/delete/{id}', 'UsersController@destroy')->name('admin.user.delete')->middleware('permission.admin');
 
         /**
          / Gerenciar Notícias

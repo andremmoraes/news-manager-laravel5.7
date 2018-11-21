@@ -10,21 +10,6 @@ use App\User;
 
 class UsersController extends Controller
 {
-
-    /**
-     * Apenas administrador tem acesso á essa pagina.
-     */
-    public function __construct()
-    {
-        $this->middleware(function ($request, $next) {
-            if (\Auth::user()->admin != 0) {
-                return redirect()->route('admin.painel.index');
-            }
-
-            return $next($request);
-        });
-    }
-
     /**
      * Display a listing of the resource.
      *
